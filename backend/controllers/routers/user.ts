@@ -1,5 +1,10 @@
 import express from "express";
-import { cabinetList, userList, userInfo } from "../../models/user";
+import {
+  cabinetList,
+  userList,
+  userInfo,
+  lentCabinetInfo,
+} from "../../models/user";
 import {
   createLentLog,
   createLent,
@@ -11,6 +16,7 @@ import {
 export const userRouter = express.Router();
 
 // 전체 사물함에 대한 정보
+// TODO : get으로 바꿔야하지 않을까?
 userRouter.post("/api/cabinet", (req: any, res: any) => {
   if (!cabinetList) {
     res.status(400).send({ error: "no cabinet information" });
@@ -34,6 +40,7 @@ userRouter.post("/api/lent_info", async (req: any, res: any) => {
       return;
     }
     getLentUser().then((resp: any) => {
+      // isLent : 빌린 사물함 인덱스. 빌린게 없다면 -1 리턴
       const isLent = resp.lentInfo.findIndex(
         (cabinet: any) =>
           cabinet.lent_user_id == req.session.passport.user.user_id
@@ -74,8 +81,6 @@ userRouter.post("/api/lent", async (req: any, res: any) => {
           }
         );
         res.send({ cabinet_id: errno });
-      } else {
-        res.send({ cabinet_id: -1 });
       }
     });
   } catch (err) {
@@ -92,14 +97,16 @@ userRouter.post("/api/return_info", async (req: any, res: any) => {
       res.status(400).send({ error: "Permission Denied" });
       return;
     }
+    // 로그인한 유저 index 찾기
     const idx = userList.findIndex(
-      (user: userInfo) => user.access === req.session.passport.user.access
+      (user: userInfo) => user.access === req.session.passport.user.access // accessToken
     );
     if (idx === -1) {
-      res.status(400).send({ error: "Permission Denied" });
+      res.status(400).send({ error: "Permission Denied" }); // 토큰 만료 에러 아닌가??
       return;
     }
     getUser(userList[idx]).then((resp: any) => {
+      // resp: lentCabinetInfo 해도 되는건가?
       res.send(resp);
     });
   } catch (err) {

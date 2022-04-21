@@ -74,7 +74,10 @@ export default function Lent() {
       .post(url)
       .then((res: any) => {
         setLent(res.data.lentInfo);
+        console.log("=== isLent ===");
         setisLent(res.data.isLent);
+        console.log(isLent);
+        console.log("=== isLent ===");
       })
       .catch((err) => {
         console.log(err);

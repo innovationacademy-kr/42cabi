@@ -67,7 +67,7 @@ export async function addUser(user: userInfo) {
 //본인 정보 및 렌트 정보 - 리턴 페이지
 export async function getUser(user: userInfo): Promise<lentCabinetInfo> {
   let pool: mariadb.PoolConnection;
-  let lentCabinet: lentCabinetInfo;
+  let lentCabinet: lentCabinetInfo; //lent 된 Cabinet 하나의 Info
   const content: string = `SELECT * FROM lent l JOIN cabinet c ON l.lent_cabinet_id=c.cabinet_id WHERE l.lent_user_id='${user.user_id}'`;
 
   pool = await con.getConnection();
@@ -176,7 +176,12 @@ export async function createLentLog(user: any) {
   await pool
     .query(content)
     .then((res: any) => {
-      if (res[0] === undefined) return;
+      if (res[0] === undefined) {
+        console.log("============= res ==========");
+        console.log(res);
+        console.log("============= res ==========");
+        return;
+      }
       pool.query(
         `INSERT INTO lent_log (log_user_id, log_cabinet_id, lent_time, return_time) VALUES (${res[0].lent_user_id}, ${res[0].lent_cabinet_id}, '${res[0].lent_time}', now())`
       );
