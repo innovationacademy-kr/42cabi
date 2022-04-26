@@ -8,17 +8,6 @@ Body {
   margin: 0;
 }
 
-#container {
-  height: 95%;
-  margin-top: 10px;
-  padding: 10px 10px 10px 10px;
-  background: #ffffffec;
-  border-radius: 1em;
-  justify-content: center;
-  background-size: 30px 100px;
-  min-height: 80vh;
-}
-
 @font-face {
   font-family: "EliceDigitalBaeum_Regular";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Regular.woff")
@@ -28,9 +17,21 @@ Body {
 }
 
 #loginBtn {
+  display: flex;
   color: white;
   border: white 3px solid;
   border-radius: 15px;
+  height: 40px;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+}
+
+#button-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #colorBtn {
@@ -39,21 +40,25 @@ Body {
   border-radius: 15px;
 }
 
+a {
+  text-decoration: none;
+}
+
 #loginBtn:hover {
   background-color: #d8d4d44b;
 }
 
-#root {
-  height: 100%;
-  margin: 0;
-}
-
-.App {
-  height: 100%;
-  margin: 0;
-}
-
 #logo > img {
-  height: 40vh;
+  width: 80vw;
+  margin: 10px 10px;
   object-fit: scale-down;
+  max-width: 660px;
+  max-height: 300px;
+}
+
+#logo {
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
 }

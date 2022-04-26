@@ -12,6 +12,7 @@ import passportConfig from "./controllers/middleware/passport";
 import slack from "./controllers/middleware/slack";
 
 import dotenv from "dotenv";
+import cors from "cors";
 
 const env = process.env;
 if (env.USER === "ec2-user") {
@@ -40,7 +41,14 @@ Sentry.init({
 const swaggerSpec = YAML.load(path.join(__dirname, "./api/swagger.yaml"));
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-app.use(express.static(path.join(__dirname, "./views")));
+// app.use(express.static(path.join(__dirname, "./views"))); // views 폴더 만들어서 보여줌
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET, HEAD, PUT, PATCh, POST, DELETE",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -60,6 +68,8 @@ app.use("/", router);
 slack();
 connectionForCabinet();
 
+/*
 app.use("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./views/index.html"));
 });
+*/

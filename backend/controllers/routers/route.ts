@@ -34,16 +34,16 @@ router.get(
           }
           if (resp.lent_id !== -1) {
             // lent_id가 -1이 아니라면 -> 빌린 사물함이 있음
-            res.redirect("/return"); // /return으로 이동
+            res.redirect("http://localhost:3000/return"); // /return으로 이동
           } else {
-            res.redirect("/lent"); // lent_id === -1 -> 빌린 사물함이 없음 -> /lent로 이동
+            res.redirect("http://localhost:3000/lent"); // lent_id === -1 -> 빌린 사물함이 없음 -> /lent로 이동
           }
         }
       );
     } catch (err) {
       //console.log(err);
       //res.status(400).json({ error: err });
-      res.status(400).json({ error: err }).redirect("/");
+      res.status(400).json({ error: err }).redirect("http://localhost:3000/");
     }
   }
 );
