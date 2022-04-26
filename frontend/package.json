@@ -11,18 +11,20 @@
   "dependencies": {
     "axios": "^0.26.1",
     "bootstrap-icons": "^1.7.2",
-    "nodemon": "^2.0.15",
     "glob-watcher": "^5.0.5",
     "gulp": "^4.0.2",
+    "nodemon": "^2.0.15",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router": "^6.3.0",
+    "styled-components": "^5.3.5",
     "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",
     "@types/react": "^18.0.6",
     "@types/react-dom": "^18.0.2",
+    "@types/styled-components": "^5.1.25",
     "@vitejs/plugin-react": "^1.0.7",
     "react-router-dom": "^6.3.0",
     "typescript": "^4.4.4",
