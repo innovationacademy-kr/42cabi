@@ -1,3 +1,8 @@
+import {
+  CabiButton,
+  WhiteButtonFrame,
+  PurpleButtonFrame,
+} from "../components/CabiButton";
 import "./main.css";
 
 export type userInfo = {
@@ -24,6 +29,21 @@ export default function Main() {
           L O G I N
         </a>
       </div>
+      <WhiteButtonFrame>
+        <CabiButton isExpired={false}>
+          <a href={url}>반 납 하 기</a>
+        </CabiButton>
+      </WhiteButtonFrame>
+      <PurpleButtonFrame>
+        <CabiButton isExpired={false}>
+          <a href={url}>연 장 가 능</a>
+        </CabiButton>
+      </PurpleButtonFrame>
+      <PurpleButtonFrame>
+        <CabiButton isExpired={true}>
+          <a href={url}>연 장 불 가</a>
+        </CabiButton>
+      </PurpleButtonFrame>
     </div>
   );
 }

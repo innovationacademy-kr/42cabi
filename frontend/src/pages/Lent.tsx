@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { CabiIcon } from "../components/CabiIcon";
 import { Container } from "../components/Container";
 import { userInfo } from "./Main";
 // import Menu from "../component/Menu";
@@ -15,7 +16,7 @@ import "./main.css";
 export default function Lent() {
   return (
     <Container>
-      <img src="../img/cabinet.ico" width="30" />
+      <CabiIcon src={"./img/cabinet.ico"} />
     </Container>
   );
 }
