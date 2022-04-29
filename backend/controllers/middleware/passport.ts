@@ -1,5 +1,6 @@
 import passport from "passport";
 import { userList } from "../../models/user";
+import { jwtToken } from "./jwt";
 
 import dotenv from "dotenv";
 
@@ -26,34 +27,33 @@ const FortyTwoOpt = {
   passReqToCallback: true,
 };
 
-const FortyTwoVerify = (
+const FortyTwoVerify = async (
   req: any,
   accessToken: any,
   refreshToken: any,
   profile: any,
   cb: any
 ) => {
-  const userInfo = {
-    user_id: profile.id,
-    intra_id: profile.username,
-    email: profile.emails[0].value,
-    access: accessToken,
-    refresh: refreshToken,
-  };
-  const idx = userList.findIndex((user) => user.user_id === profile.id);
-  if (idx !== -1) {
-    userList.splice(idx, 1);
+  try{
+    // console.log('forty two - ');
+    const userInfo = {
+      user_id: profile.id,
+      intra_id: profile.username,
+      email: profile.emails[0].value,
+      access: accessToken,
+      refresh: refreshToken,
+    };
+    // console.log(req.session);
+    // console.log(req.res);
+    const result = await jwtToken.sign(userInfo);
+    console.log(result);
+    req.res.cookie("accessToken", result.token, { httpOnly: true });
+    req.res.cookie("refreshToken", result.refreshToken, {httpOnly: true });
+    // req.headers.token = result;
+    return cb(null, userInfo);
+  } catch (e:any) {
+    console.log('fortyTwo', e);
   }
-  userList.push({
-    user_id: profile.id,
-    intra_id: profile.username,
-    email: profile.emails[0].value,
-    auth: false,
-    access: accessToken,
-    refresh: refreshToken,
-    phone: "",
-  });
-  return cb(null, userInfo);
 };
 
 export default function passportUse() {

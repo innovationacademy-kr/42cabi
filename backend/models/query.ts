@@ -168,7 +168,7 @@ export async function createLent(cabinet_id: number, user: userInfo) {
 }
 
 //lent_log 값 생성 후 lent 값 삭제
-export async function createLentLog(user: any) {
+export async function createLentLog(user: userInfo) {
   let pool: mariadb.PoolConnection;
   const content: string = `SELECT * FROM lent WHERE lent_user_id=${user.user_id}`;
 
@@ -192,7 +192,7 @@ export async function createLentLog(user: any) {
   if (pool) pool.end();
 }
 
-export async function activateExtension(user: any) {
+export async function activateExtension(user: userInfo) {
   let pool: mariadb.PoolConnection;
   const content: string = `SELECT * FROM lent WHERE lent_user_id=${user.user_id}`;
 
