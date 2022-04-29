@@ -1,19 +1,20 @@
 import randToken from "rand-token";
 import jwt from "jsonwebtoken";
 import { secret } from "../config/secretkey";
+import { userInfo } from "../../models/user";
 const TOKEN_EXPIRED: number = -3;
 const TOKEN_INVALID: number = -2;
 
 export const jwtToken = {
-  sign : async (user: any) => {
+  sign : async (user: userInfo) => {
     const result = {
-      token: jwt.sign(user, secret.secretKey, secret.options),
+      accessToken: jwt.sign(user, secret.secretKey, secret.options),
       refreshToken: randToken.uid(256),
     };
-    console.log("jwt sign");
+    // console.log("jwt sign");
     return result;
   },
-  verify: async (token: any) => {
+  verify: async (token: string) => {
     let decoded;
     try {
       console.log("jwt verify");

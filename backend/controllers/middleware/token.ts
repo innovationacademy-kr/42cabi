@@ -18,9 +18,9 @@ interface JwtPayload {
 
 export const signin = async (req: any, res: any) => {
   try{
-    console.log('siginin - ', req.headers);
-    console.log(req.cookies);
-    console.log(req.session);
+    // console.log('siginin - ', req.headers);
+    // console.log(req.cookies);
+    // console.log(req.session);
     if (!req.cookies || !req.cookies.accessToken) {
       passport.authenticate("42")(req, res);
     } else {
@@ -40,6 +40,7 @@ export const signin = async (req: any, res: any) => {
 
 export const verify = async (req:any, res: any): Promise<JwtPayload | undefined> => {
   try {
+    // console.log("token - verify", req.session, req.cookies);
     const decoded = await jwtToken.verify(req.cookies.accessToken) as JwtPayload;
     if (typeof decoded === "number"){
       if (decoded === TOKEN_EXPIRED) {
@@ -47,10 +48,10 @@ export const verify = async (req:any, res: any): Promise<JwtPayload | undefined>
       } else if (decoded === TOKEN_INVALID) {
         res.status(401).send({ error: "Invalid token" });
       }
+      return undefined;
     } else {
       return decoded;
     }
-    return undefined;
   } catch (e) {
     console.log('verify - ', e);
   }

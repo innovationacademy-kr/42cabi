@@ -21,7 +21,11 @@ router.get(
   // (req:any, res:any) => successLogin
   async (req: any, res: any) => {
     try {
-      res.redirect("/lent");
+      // console.log(req.headers);
+      // console.log(req.session);
+      console.log(req.cookies);
+      successLogin(req, res);
+      // res.redirect("/lent");
       // const decoded = await verifyAndRedirect(req, res);
       // if (decoded === undefined) {
       //   return ;
@@ -40,16 +44,20 @@ router.get(
   }
   
 );
-router.post("/auth/logout", (req: any, res: any) => {
+router.post("/auth/logout", async (req: any, res: any) => {
   req.logout();
-  req.cookies.accessToken = null;
-  req.cookies.refreshToken = null;
-  req.session.destroy();
+  
+  // await res.cookie("accessToken", "");
+  // res.cookie("accessToken", "", "expires: 0");
+  // req.cookies.accessToken = null;
+  // req.cookies.refreshToken = null;
+  // req.session.destroy();
   res.redirect("/");
 });
 
 export const successLogin = async (req: any, res: any) => {
   try {
+    console.log('successLogin', req.session, req.cookies);
     const decoded = await verify(req, res);
     if (decoded === undefined) {
       return ;

@@ -1,8 +1,10 @@
 import passport from "passport";
 import { userList } from "../../models/user";
 import { jwtToken } from "./jwt";
-
+import jwt from "jsonwebtoken"
 import dotenv from "dotenv";
+import { secret } from "../config/secretkey";
+
 
 const env = process.env;
 if (env.USER === "ec2-user") {
@@ -43,13 +45,12 @@ const FortyTwoVerify = async (
       access: accessToken,
       refresh: refreshToken,
     };
-    // console.log(req.session);
-    // console.log(req.res);
     const result = await jwtToken.sign(userInfo);
     console.log(result);
-    req.res.cookie("accessToken", result.token, { httpOnly: true });
-    req.res.cookie("refreshToken", result.refreshToken, {httpOnly: true });
-    // req.headers.token = result;
+    await req.res.cookie("accessToken", result.accessToken, { httpOnly: true, secure: true });
+    await req.res.cookie("refreshToken", result.refreshToken, {httpOnly: true, secure: true });
+    console.log('cookkiiiiiiiiiieeeeeeeeeeeee');
+    // return cb();
     return cb(null, userInfo);
   } catch (e:any) {
     console.log('fortyTwo', e);

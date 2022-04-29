@@ -24,11 +24,12 @@ userRouter.post("/api/cabinet", authUtil, (req: any, res: any) => {
 // 현재 모든 대여자들의 정보
 userRouter.post("/api/lent_info", authUtil, async (req: any, res: any) => {
   try {
-    getLentUser().then((resp: any) => {
-      const isLent = resp.lentInfo.findIndex(
-        (cabinet: any) =>
-          cabinet.lent_user_id == req.session.passport.user.user_id
-      );
+    getLentUser().then(async (resp: any) => {
+      const decoded = await verify(req, res);
+      if (decoded === undefined) {
+        return ;
+      }
+      const isLent = resp.lentInfo.findIndex((cabinet: any) => cabinet.lent_user_id == decoded.user_id);
       res.send({ lentInfo: resp.lentInfo, isLent: isLent });
     });
   } catch (err: any) {
