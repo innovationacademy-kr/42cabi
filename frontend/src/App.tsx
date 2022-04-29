@@ -1,25 +1,20 @@
 import Lent from "./pages/Lent";
 import Main from "./pages/Main";
-//import Return from "./pages/Return";
-// import Footer from "./component/Footer";
+import Return from "./pages/Return";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
-      <div id="App">
-        <section>
-          <Routes>
-            <Route path="/" element={<Main />}></Route>
-            <Route path="/lent" element={<Lent />}></Route>
-            {/* <Route path="/return" element={<Return />}></Route> */}
-            <Route path="/*" element={<Main />}></Route>
-          </Routes>
-        </section>
-        {/* <Footer /> */}
-      </div>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/lent" element={<Lent />}></Route>
+        <Route path="/return" element={<Return />}></Route>
+        <Route path="/*" element={<Main />}></Route>
+      </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

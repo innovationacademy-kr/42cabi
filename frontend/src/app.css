@@ -1,3 +1,23 @@
-section {
-  padding-bottom: 10px;
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  background: linear-gradient(#6667ab, #6c337d);
+  font-family: "EliceDigitalBaeum_Regular";
+}
+
+button {
+  font-size: 1.6rem;
+  font-family: "EliceDigitalBaeum_Regular";
+}
+
+@font-face {
+  font-family: "EliceDigitalBaeum_Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
