@@ -2,10 +2,10 @@ export type userInfo = {
   user_id: number;
   intra_id: string;
   auth?: boolean;
-  email: string;
+  email?: string;
   phone?: string;
-  access: string;
-  refresh: string;
+  access?: string;
+  refresh?: string;
 };
 export type lentInfo = {
   lent_id: number;

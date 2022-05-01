@@ -1,37 +1,34 @@
+import { verifyLent } from "../routers/route";
 import { jwtToken } from "./jwt";
+import { verify } from "./token";
+import { JwtPayload } from "./token";
 
-const TOKEN_EXPIRED: number = -3;
-const TOKEN_INVALID: number = -2;
-
-export default function authCheck(req: any, res: any, next: any) {
-  if (req.user) {
-    console.log(req.user);
-    console.log("success auth");
+export default async function authCheck(req: any, res: any, next: any) {
+  // console.log('authCheck!');
+  if (!req.cookies || !req.cookies.accessToken) {
     next();
   } else {
-    console.log("failed to auth");
-    res.status(401).json({
-      authenticated: false,
-      message: "User has not been authenticated",
-    });
+    const result = await jwtToken.verify(req.cookies.accessToken) as JwtPayload;
+    if (typeof result === "number" || typeof result === "undefined" || typeof result === "string") {
+      next();
+    } else {
+      // console.log('result = ', result);
+      verifyLent(res, result);
+    }
   }
 }
 
 export const authUtil = async (req:any, res:any, next:any) => {
   try {
-    console.log('authUtil');
+    // console.log('authUtil');
     let token = req.cookies.accessToken;
     // console.log(req.cookies);
     // console.log(req.session.passport);
     if (!token) {
       return res.status(400).json({ error: "Permission Denied" });
     }
-    const user = await jwtToken.verify(token);
-    console.log(user);
-    if (user === TOKEN_EXPIRED) {
-      return res.status(419).send({ error: "Expired token" });
-    } else if (user === TOKEN_INVALID) {
-      return res.status(401).send({ error: "Invalid token" });
+    if (!verify(req, res)){
+      return ;
     }
     next();
   } catch (e) {

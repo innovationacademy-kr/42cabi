@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken"
 import dotenv from "dotenv";
 import { secret } from "../config/secretkey";
 
-
 const env = process.env;
 if (env.USER === "ec2-user") {
   dotenv.config({ path: env.PWD + "/.env" }); //dep
@@ -37,20 +36,20 @@ const FortyTwoVerify = async (
   cb: any
 ) => {
   try{
-    // console.log('forty two - ');
+    console.log('forty two - ');
     const userInfo = {
       user_id: profile.id,
       intra_id: profile.username,
-      email: profile.emails[0].value,
-      access: accessToken,
-      refresh: refreshToken,
+      // email: profile.emails[0].value,
+      // access: accessToken,
+      // refresh: refreshToken,
     };
     const result = await jwtToken.sign(userInfo);
-    console.log(result);
-    await req.res.cookie("accessToken", result.accessToken, { httpOnly: true, secure: true });
-    await req.res.cookie("refreshToken", result.refreshToken, {httpOnly: true, secure: true });
-    console.log('cookkiiiiiiiiiieeeeeeeeeeeee');
-    // return cb();
+    // console.log(result);
+    req.res.cookie("accessToken", result.accessToken, { httpOnly: true, secure: true });
+    req.res.cookie("refreshToken", result.refreshToken, {httpOnly: true, secure: true });
+    // console.log('cookkiiiiiiiiiieeeeeeeeeeeee');
+    // console.log(req.cookies);
     return cb(null, userInfo);
   } catch (e:any) {
     console.log('fortyTwo', e);

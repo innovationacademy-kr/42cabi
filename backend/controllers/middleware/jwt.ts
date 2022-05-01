@@ -2,8 +2,7 @@ import randToken from "rand-token";
 import jwt from "jsonwebtoken";
 import { secret } from "../config/secretkey";
 import { userInfo } from "../../models/user";
-const TOKEN_EXPIRED: number = -3;
-const TOKEN_INVALID: number = -2;
+import { TOKEN_EXPIRED, TOKEN_INVALID } from "./token";
 
 export const jwtToken = {
   sign : async (user: userInfo) => {
@@ -17,7 +16,7 @@ export const jwtToken = {
   verify: async (token: string) => {
     let decoded;
     try {
-      console.log("jwt verify");
+      // console.log("jwt verify");
       decoded = jwt.verify(token, secret.secretKey);
     } catch (err: any) {
       if (err.message === "jwt expired") {
