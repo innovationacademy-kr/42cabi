@@ -120,7 +120,6 @@ export default function Lent() {
     if (intra === "") {
       return result;
     }
-    console.log(intra);
     event.forEach((aEvent:eventInfo) => {
       if (aEvent.intra_id === intra) {
         return result = aEvent;
