@@ -1,8 +1,8 @@
 import "./main.css";
 
 export default function Main() {
-  // const url: string = "/auth/login";
-  const url: string = "https://cabi.42cadet.kr";
+  const url: string = "/auth/login";
+  // const url: string = "https://cabi.42cadet.kr";
 
   return (
     <div className="container">
