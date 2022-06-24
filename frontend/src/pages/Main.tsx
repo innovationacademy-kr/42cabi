@@ -11,7 +11,7 @@ export default function Main() {
       </div>
       <div className="row d-grid gap-2 col-6 mx-auto">
 				<a className="btn btn-lg" id="loginBtn" href={url}>
-          L O G I N
+          D E V L O G I N
         </a>
 				{/* <a className="btn btn-lg" id="loginBtn" href={url}>
           G O !
