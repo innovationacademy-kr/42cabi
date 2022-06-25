@@ -24,7 +24,7 @@ export default function Main() {
             변경 후 주소 : <a href="https://cabidev.42seoul.io/">https://cabidev.42seoul.io/</a> <br/><br/>
           </div>
           새로운 서비스 주소로 보내드릴 테니, <br/>
-          새 주소에서,  더욱 슬기롭게! <br/>42cbi 서비스를 이용해주세요 🙇‍♂️ <br/> <br/>
+          새 주소에서,  더욱 슬기롭게! <br/>42cabi 서비스를 이용해주세요 🙇‍♂️ <br/> <br/>
           감사합니다 🚀
         </div>
       </div>
