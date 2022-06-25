@@ -1,6 +1,6 @@
 Body {
-  background: -webkit-linear-gradient(to bottom, #6667ab, #6c337d);
-  background: linear-gradient(to bottom, #6667ab, #6c337d);
+  background: -webkit-linear-gradient(to top, #6667ab, #e31414);
+  background: linear-gradient(to top, #6667ab, #dd2810);
   padding: 3%;
   justify-content: center;
   font-family: "EliceDigitalBaeum_Regular";
@@ -18,6 +18,36 @@ Body {
   background-size: 30px 100px;
   min-height: 80vh;
 }
+
+.centerTextContainer {
+  height: 10%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh;
+}
+
+.centerTextSmall {
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgba(240, 248, 255, 0.526);
+}
+.centerText {
+  text-align: center;
+  font-size: 1.5rem;
+  color: aliceblue;
+}
+
+.centerTextLarge {
+  text-align: center;
+  font-size: 1.5rem;
+  color: aliceblue;
+}
+
 
 @font-face {
   font-family: "EliceDigitalBaeum_Regular";
@@ -54,6 +84,16 @@ Body {
 }
 
 #logo > img {
-  height: 40vh;
+  height: 17vh;
   object-fit: scale-down;
+}
+
+a:link {
+  color : rgb(245, 237, 238);
+}
+a:visited {
+  color : rgb(51, 4, 95);
+}
+a:hover {
+  color : rgb(162, 12, 221);
 }
