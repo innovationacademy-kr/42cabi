@@ -18,7 +18,7 @@ export interface lent {
   expire_time?: string;
   extension: boolean;
 }
-export interface lentInfo extends lent {
+export interface lentInfo {
   intra_id?: string;
 };
 
