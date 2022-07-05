@@ -23,10 +23,11 @@ export default function Lent() {
   const [isLent, setisLent] = useState<number>(0);
   const [target, setTarget] = useState<number>(-1);
   const [cabiNum, setCabiNum] = useState<number>(-1);
+  const [modalMessage, setModalMessage] = useState<string>("");
 
-  const info = useSelector((state :RootState) => state.cabinetReducer);
-  const lent = useSelector((state :RootState) => state.lentReducer);
-  const user = useSelector((state :RootState) => state.userReducer);
+  const info = useSelector((state: RootState) => state.cabinetReducer);
+  const lent = useSelector((state: RootState) => state.lentReducer);
+  const user = useSelector((state: RootState) => state.userReducer);
 
   const dispatch = useDispatch();
 
@@ -123,6 +124,7 @@ export default function Lent() {
         <Carousel
           setTarget={setTarget}
           setCabiNum={setCabiNum}
+          setModalMessage={setModalMessage}
           info={info}
           user={user?.intra_id}
           l_idx={l_idx}
@@ -169,10 +171,10 @@ export default function Lent() {
         </div>
       </div>
       <div className="text-right">
-      <Question></Question>
+        <Question></Question>
       </div>
       <LentModal target={target} cabiNum={cabiNum}></LentModal>
-      <ContentsModal contents="이미 대여중인 사물함이 있어요 :)" />
+      <ContentsModal contents={modalMessage} />
     </div>
   );
 }

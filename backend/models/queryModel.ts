@@ -1,12 +1,15 @@
 import mariadb from "mariadb";
 import { lentInfo, lentCabinetInfo, userInfo, user } from "./types";
-import { sendLentMsg, sendReturnMsg } from "../controllers/middleware/slackMiddleware";
+import {
+  sendLentMsg,
+  sendReturnMsg,
+} from "../controllers/middleware/slackMiddleware";
 
 export const con = mariadb.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "42cabi_test",
+  database: "42cabi_DB",
   dateStrings: true,
 });
 
@@ -252,4 +255,3 @@ export async function checkBannedUserList(user_id: number) {
   if (pool) pool.end();
   return isBanned;
 }
-

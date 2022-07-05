@@ -48,7 +48,7 @@ export default function Return() {
         navigate("/");
       });
   };
-  
+
   const callReturn = async () => {
     await axios
       .post("/api/return_info")
@@ -58,22 +58,21 @@ export default function Return() {
           setLentCabinet(res.data);
           let extention = "";
           if (res.data) {
-            const date:Date = new Date(res.data.expire_time);
-            const nowDate:Date = new Date();
+            const date: Date = new Date(res.data.expire_time);
+            const nowDate: Date = new Date();
             nowDate.setDate(nowDate.getDate() + 7);
             date.setDate(date.getDate() + 1);
             date.setHours(0, 0, 0);
-            if ((date > nowDate) || (res.data.extension > 0)){
+            if (date > nowDate || res.data.extension > 0) {
               extention = "disabled";
-            }
-            else if (res.data.lent_id === - 1) {
+            } else if (res.data.lent_id === -1) {
               extention = "hidden";
             }
           }
           setExtension(extention);
           //console.log(res.data);
-          if (res.data){
-            const date:Date = new Date(res.data.expire_time);
+          if (res.data) {
+            const date: Date = new Date(res.data.expire_time);
             date.setDate(date.getDate() + 1);
             date.setHours(0, 0, 0);
             //console.log(date);
@@ -96,8 +95,8 @@ export default function Return() {
   //   await axios
   //   .get("/api/event/winner")
   //   .then((res) => {
-	// 		setEventWinner(res.data.winner);
-	// 	});
+  // 		setEventWinner(res.data.winner);
+  // 	});
   // };
 
   return (
@@ -132,7 +131,8 @@ export default function Return() {
             ) : (
               <div>
                 <div className="card-title text-center display-5">
-                  {lentCabinet?.location} {lentCabinet?.floor}{"F "}
+                  {lentCabinet?.location} {lentCabinet?.floor}
+                  {"F "}
                   {lentCabinet?.cabinet_num}
                 </div>
                 <div className="card-subtitle mb-2 text-muted text-center">
